@@ -3,7 +3,7 @@ package com.maomipuzi.user.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.maomipuzi.user.dao.UserMapper;
-import com.maomipuzi.user.User;
+import com.maomipuzi.user.pojo.User;
 import com.maomipuzi.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,11 +1,8 @@
 package com.maomipuzi.goods.service;
 
-import com.github.pagehelper.PageInfo;
-import com.maomipuzi.goods.Goods;
-import com.maomipuzi.goods.SpuGoods;
+import com.maomipuzi.goods.pojo.Goods;
+import com.maomipuzi.goods.pojo.SpuGoods;
 import service.BasicService;
-
-import java.util.List;
 
 /**
  * @version 1.0

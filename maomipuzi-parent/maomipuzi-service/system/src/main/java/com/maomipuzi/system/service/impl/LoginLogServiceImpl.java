@@ -2,7 +2,7 @@ package com.maomipuzi.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.system.LoginLog;
+import com.maomipuzi.system.pojo.LoginLog;
 import com.maomipuzi.system.dao.LoginLogMapper;
 import com.maomipuzi.system.service.LoginLogService;
 import org.springframework.beans.factory.annotation.Autowired;

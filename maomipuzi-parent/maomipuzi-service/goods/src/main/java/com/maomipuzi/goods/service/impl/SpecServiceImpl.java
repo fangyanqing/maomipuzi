@@ -2,7 +2,7 @@ package com.maomipuzi.goods.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.goods.Spec;
+import com.maomipuzi.goods.pojo.Spec;
 import com.maomipuzi.goods.dao.SpecMapper;
 import com.maomipuzi.goods.service.SpecService;
 import org.springframework.beans.factory.annotation.Autowired;

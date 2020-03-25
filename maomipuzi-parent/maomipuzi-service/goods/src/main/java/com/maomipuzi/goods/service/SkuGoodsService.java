@@ -1,6 +1,6 @@
 package com.maomipuzi.goods.service;
 
-import com.maomipuzi.goods.SkuGoods;
+import com.maomipuzi.goods.pojo.SkuGoods;
 import service.BasicService;
 
 /**

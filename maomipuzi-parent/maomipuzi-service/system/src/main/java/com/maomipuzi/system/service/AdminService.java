@@ -1,6 +1,6 @@
 package com.maomipuzi.system.service;
 
-import com.maomipuzi.system.Admin;
+import com.maomipuzi.system.pojo.Admin;
 import service.BasicService;
 
 /**

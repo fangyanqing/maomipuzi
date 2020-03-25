@@ -1,6 +1,6 @@
 package com.maomipuzi.system.service;
 
-import com.maomipuzi.system.LoginLog;
+import com.maomipuzi.system.pojo.LoginLog;
 import service.BasicService;
 
 /**

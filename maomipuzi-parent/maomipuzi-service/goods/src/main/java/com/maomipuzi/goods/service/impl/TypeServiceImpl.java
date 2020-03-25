@@ -2,7 +2,7 @@ package com.maomipuzi.goods.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.goods.Type;
+import com.maomipuzi.goods.pojo.Type;
 import com.maomipuzi.goods.dao.TypeMapper;
 import com.maomipuzi.goods.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;

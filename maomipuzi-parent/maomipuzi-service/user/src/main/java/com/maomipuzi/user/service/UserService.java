@@ -1,6 +1,6 @@
 package com.maomipuzi.user.service;
 
-import com.maomipuzi.user.User;
+import com.maomipuzi.user.pojo.User;
 import service.BasicService;
 /**
  * @version 1.0

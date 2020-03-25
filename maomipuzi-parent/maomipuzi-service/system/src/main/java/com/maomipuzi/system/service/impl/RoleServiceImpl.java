@@ -2,7 +2,7 @@ package com.maomipuzi.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.system.Role;
+import com.maomipuzi.system.pojo.Role;
 import com.maomipuzi.system.dao.RoleMapper;
 import com.maomipuzi.system.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;

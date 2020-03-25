@@ -1,4 +1,4 @@
-package com.maomipuzi.system;
+package com.maomipuzi.system.pojo;
 
 import io.swagger.annotations.ApiModel;
 

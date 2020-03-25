@@ -1,7 +1,7 @@
 package com.maomipuzi.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.system.Role;
+import com.maomipuzi.system.pojo.Role;
 import com.maomipuzi.system.service.RoleService;
 import entity.Result;
 import entity.StatusCode;

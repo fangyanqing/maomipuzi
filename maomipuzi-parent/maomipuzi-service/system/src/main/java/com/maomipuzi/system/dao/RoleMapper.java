@@ -1,6 +1,6 @@
 package com.maomipuzi.system.dao;
 
-import com.maomipuzi.system.Role;
+import com.maomipuzi.system.pojo.Role;
 import tk.mybatis.mapper.common.Mapper;
 /**
  * @version 1.0

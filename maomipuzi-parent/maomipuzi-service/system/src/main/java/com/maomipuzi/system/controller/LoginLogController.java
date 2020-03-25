@@ -1,7 +1,7 @@
 package com.maomipuzi.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.system.LoginLog;
+import com.maomipuzi.system.pojo.LoginLog;
 import com.maomipuzi.system.service.LoginLogService;
 import entity.Result;
 import entity.StatusCode;

@@ -1,4 +1,4 @@
-package com.maomipuzi.user;
+package com.maomipuzi.system.pojo;
 
 import io.swagger.annotations.ApiModel;
 import pojo.Base;
@@ -6,7 +6,6 @@ import pojo.Base;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @version 1.0
@@ -14,71 +13,62 @@ import java.util.Date;
  * @create: 2020-03-03
  **/
 
-@ApiModel(description = "会员表",value = "User")
-@Table(name="user")
-public class User extends Base implements Serializable {
+@ApiModel(description = "管理员表",value = "Admin")
+@Table(name="admin")
+public class Admin extends Base implements Serializable {
+
     @Id
-    //会员ID
-    private Integer userId;
+    //管理员ID
+    private Integer adminId;
 
-    //昵称
-    private String userNickname;
+   //管理员姓名
+    private String adminName;
 
-    //真实姓名
-    private String realName;
-
-    //密码
+   //密码
     private String password;
 
-    //性别 1-男（默认） 2-女
+   //性别 1-男（默认） 2-女
     private Integer gender;
 
     //头像
     private String avatar;
 
-    //电话
+   //电话
     private String phone;
 
     //邮箱
     private String email;
 
-   //身份证
+    //身份证
     private String identification;
 
     //住址
     private String address;
 
-    //角色类型   3-会员
+    //角色类型 0-超级管理员 1-管理员(默认） 2-审核员  3-会员
     private Integer roleType;
 
     //状态 1-启用（默认） 0-禁用
     private Integer enable;
 
     //最后修改密码时间
-    private Date lastPasswordResetTime;
+    private String lastPasswordResetTime;
 
-    public Integer getUserId() {
-        return userId;
+
+    public Integer getAdminId() {
+        return adminId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
     }
 
-    public String getUserNickname() {
-        return userNickname;
+    public String getAdminName() {
+        return adminName;
     }
 
-    public void setUserNickname(String userNickname) {
-        this.userNickname = userNickname;
-    }
-
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     public String getPassword() {
@@ -153,11 +143,11 @@ public class User extends Base implements Serializable {
         this.enable = enable;
     }
 
-    public Date getLastPasswordResetTime() {
+    public String getLastPasswordResetTime() {
         return lastPasswordResetTime;
     }
 
-    public void setLastPasswordResetTime(Date lastPasswordResetTime) {
+    public void setLastPasswordResetTime(String lastPasswordResetTime) {
         this.lastPasswordResetTime = lastPasswordResetTime;
     }
 }

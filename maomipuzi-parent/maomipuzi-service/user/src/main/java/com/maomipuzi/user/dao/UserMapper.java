@@ -1,6 +1,6 @@
 package com.maomipuzi.user.dao;
 
-import com.maomipuzi.user.User;
+import com.maomipuzi.user.pojo.User;
 import tk.mybatis.mapper.common.Mapper;
 /**
  * @version 1.0

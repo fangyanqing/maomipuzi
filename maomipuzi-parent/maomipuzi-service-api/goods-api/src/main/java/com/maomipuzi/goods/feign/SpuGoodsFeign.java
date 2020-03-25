@@ -1,7 +1,7 @@
-package com.maomipuzi.feign;
+package com.maomipuzi.goods.feign;
 
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.goods.SkuGoods;
+import com.maomipuzi.goods.pojo.SpuGoods;
 import entity.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -11,24 +11,24 @@ import java.util.List;
 /**
  * @version 1.0
  * @author: fangyanqing
- * @create: 2020-03-18 15:03
+ * @create: 2020-03-18 15:04
  **/
 @FeignClient(name= "com/maomipuzi/goods")
-@RequestMapping("/skuGoods")
-public interface SkuGoodsFeign {
+@RequestMapping("/spuGoods")
+public interface SpuGoodsFeign {
 
     /***
-     * SkuGoods分页条件搜索实现
-     * @param skuGoods
+     * SpuGoods分页条件搜索实现
+     * @param spuGoods
      * @param page
      * @param size
      * @return
      */
     @PostMapping(value = "/search/{page}/{size}" )
-    Result<PageInfo> findPage(@RequestBody(required = false) SkuGoods skuGoods, @PathVariable  int page, @PathVariable  int size);
+    Result<PageInfo> findPage(@RequestBody(required = false) SpuGoods spuGoods, @PathVariable  int page, @PathVariable  int size);
 
     /***
-     * SkuGoods分页搜索实现
+     * SpuGoods分页搜索实现
      * @param page:当前页
      * @param size:每页显示多少条
      * @return
@@ -38,11 +38,11 @@ public interface SkuGoodsFeign {
 
     /***
      * 多条件搜索数据
-     * @param skuGoods
+     * @param spuGoods
      * @return
      */
     @PostMapping(value = "/search" )
-    Result<List<SkuGoods>> findList(@RequestBody(required = false) SkuGoods skuGoods);
+    Result<List<SpuGoods>> findList(@RequestBody(required = false) SpuGoods spuGoods);
 
     /***
      * 根据ID删除数据
@@ -53,34 +53,34 @@ public interface SkuGoodsFeign {
     Result delete(@PathVariable Integer id);
 
     /***
-     * 修改SkuGoods数据
-     * @param skuGoods
+     * 修改SpuGoods数据
+     * @param spuGoods
      * @param id
      * @return
      */
     @PutMapping(value="/{id}")
-    Result update(@RequestBody SkuGoods skuGoods, @PathVariable Integer id);
+    Result update(@RequestBody SpuGoods spuGoods, @PathVariable Integer id);
 
     /***
-     * 新增SkuGoods数据
-     * @param skuGoods
+     * 新增SpuGoods数据
+     * @param spuGoods
      * @return
      */
     @PostMapping
-    Result add(@RequestBody SkuGoods skuGoods);
+    Result add(@RequestBody SpuGoods spuGoods);
 
     /***
-     * 根据ID查询SkuGoods数据
+     * 根据ID查询SpuGoods数据
      * @param id
      * @return
      */
     @GetMapping("/{id}")
-    Result<SkuGoods> findById(@PathVariable Integer id);
+    Result<SpuGoods> findById(@PathVariable Integer id);
 
     /***
-     * 查询SkuGoods全部数据
+     * 查询SpuGoods全部数据
      * @return
      */
     @GetMapping
-    Result<List<SkuGoods>> findAll();
+    Result<List<SpuGoods>> findAll();
 }

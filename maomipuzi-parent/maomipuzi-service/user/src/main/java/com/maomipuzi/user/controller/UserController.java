@@ -1,7 +1,7 @@
 package com.maomipuzi.user.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.user.User;
+import com.maomipuzi.user.pojo.User;
 import com.maomipuzi.user.service.UserService;
 import entity.Result;
 import entity.StatusCode;

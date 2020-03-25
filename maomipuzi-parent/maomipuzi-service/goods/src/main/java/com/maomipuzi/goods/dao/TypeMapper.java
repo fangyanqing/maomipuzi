@@ -1,6 +1,6 @@
 package com.maomipuzi.goods.dao;
 
-import com.maomipuzi.goods.Type;
+import com.maomipuzi.goods.pojo.Type;
 import tk.mybatis.mapper.common.Mapper;
 /**
  * @version 1.0

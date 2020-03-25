@@ -1,8 +1,7 @@
 package com.maomipuzi.goods.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.goods.Spec;
-import com.maomipuzi.goods.Spec;
+import com.maomipuzi.goods.pojo.Spec;
 import com.maomipuzi.goods.service.SpecService;
 import entity.Result;
 import entity.StatusCode;

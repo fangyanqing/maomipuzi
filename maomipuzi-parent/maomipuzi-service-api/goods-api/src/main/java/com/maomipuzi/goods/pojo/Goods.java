@@ -1,4 +1,4 @@
-package com.maomipuzi.goods;
+package com.maomipuzi.goods.pojo;
 
 import java.io.Serializable;
 import java.util.List;

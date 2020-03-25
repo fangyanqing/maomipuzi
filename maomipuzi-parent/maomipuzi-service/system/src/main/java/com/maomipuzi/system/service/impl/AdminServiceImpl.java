@@ -2,7 +2,7 @@ package com.maomipuzi.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.system.Admin;
+import com.maomipuzi.system.pojo.Admin;
 import com.maomipuzi.system.dao.AdminMapper;
 import com.maomipuzi.system.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;

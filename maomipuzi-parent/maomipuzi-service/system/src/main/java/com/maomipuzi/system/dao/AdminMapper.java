@@ -1,6 +1,6 @@
 package com.maomipuzi.system.dao;
 
-import com.maomipuzi.system.Admin;
+import com.maomipuzi.system.pojo.Admin;
 import tk.mybatis.mapper.common.Mapper;
 
 /**

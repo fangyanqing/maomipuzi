@@ -1,16 +1,14 @@
 package com.maomipuzi.goods.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.goods.Goods;
-import com.maomipuzi.goods.SpuGoods;
+import com.maomipuzi.goods.pojo.Goods;
+import com.maomipuzi.goods.pojo.SpuGoods;
 import com.maomipuzi.goods.service.SpuGoodsService;
 import entity.Result;
 import entity.StatusCode;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import sun.java2d.StateTrackable;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.maomipuzi.system.dao;
 
-import com.maomipuzi.system.LoginLog;
+import com.maomipuzi.system.pojo.LoginLog;
 import tk.mybatis.mapper.common.Mapper;
 
 /**

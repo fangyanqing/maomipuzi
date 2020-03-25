@@ -1,7 +1,7 @@
 package com.maomipuzi.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.system.Admin;
+import com.maomipuzi.system.pojo.Admin;
 import com.maomipuzi.system.service.AdminService;
 import com.maomipuzi.system.util.JwtUtil;
 import entity.Result;
