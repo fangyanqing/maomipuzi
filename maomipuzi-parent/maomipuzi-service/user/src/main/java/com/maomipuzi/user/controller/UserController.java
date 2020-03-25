@@ -138,7 +138,7 @@ public class UserController {
      * @return
      */
     @ApiOperation(value = "查询所有User",notes = "查询所User有方法详情",tags = {"UserController"})
-    @GetMapping
+    @GetMapping("/find")
     public Result<List<User>> findAll(){
         //调用UserService实现查询所有User
         List<User> list = userService.findAll();
