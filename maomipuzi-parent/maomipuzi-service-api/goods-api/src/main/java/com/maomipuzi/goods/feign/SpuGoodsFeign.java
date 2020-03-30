@@ -13,7 +13,7 @@ import java.util.List;
  * @author: fangyanqing
  * @create: 2020-03-18 15:04
  **/
-@FeignClient(name= "com/maomipuzi/goods")
+//@FeignClient(name= "goods")
 @RequestMapping("/spuGoods")
 public interface SpuGoodsFeign {
 
