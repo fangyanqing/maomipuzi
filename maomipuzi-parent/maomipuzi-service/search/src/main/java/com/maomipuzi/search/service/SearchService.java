@@ -1,5 +1,7 @@
 package com.maomipuzi.search.service;
 
+import java.util.Map;
+
 /**
  * @version 1.0
  * @author: fangyanqing
@@ -10,4 +12,11 @@ public interface SearchService {
      * 导入索引库数据
      */
     void importData();
+
+    /**
+     * 按照查询条件进行数据查询
+     * @param searchMap
+     * @return
+     */
+    Map search(Map<String,String> searchMap);
 }
