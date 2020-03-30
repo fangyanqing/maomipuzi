@@ -14,13 +14,13 @@ import java.util.List;
  * @create: 2020-03-18 15:03
  **/
 @FeignClient(name = "goods")
-@RequestMapping("/skuGoods")
+/*@RequestMapping("/skuGoods/findAll")*/
 public interface SkuGoodsFeign {
 
     /***
      * 查询SkuGoods全部数据
      * @return
      */
-    @GetMapping
+    @GetMapping("/skuGoods/find")
     Result<List<SkuGoods>> findAll();
 }
