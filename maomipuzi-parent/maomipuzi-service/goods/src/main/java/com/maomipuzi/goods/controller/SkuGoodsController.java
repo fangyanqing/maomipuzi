@@ -34,8 +34,8 @@ public class SkuGoodsController {
      */
     @ApiOperation(value = "SkuGoods条件分页查询",notes = "分页条件查询SkuGoods方法详情",tags = {"SkuGoodsController"})
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "path", name = "page", value = "当前页", required = true, dataType = "Integer"),
-            @ApiImplicitParam(paramType = "path", name = "size", value = "每页显示条数", required = true, dataType = "Integer")
+            @ApiImplicitParam(paramType = "path", name = "page", value = "当前页", defaultValue = "1", required = true, dataType = "Integer"),
+            @ApiImplicitParam(paramType = "path", name = "size", value = "每页显示条数", defaultValue = "10", required = true, dataType = "Integer")
     })
     @PostMapping(value = "/search/{page}/{size}" )
     public Result<PageInfo> findPage(@RequestBody(required = false) @ApiParam(name = "SkuGoods对象",value = "传入JSON数据",required = false) SkuGoods skuGoods, @PathVariable  int page, @PathVariable  int size){
@@ -52,8 +52,8 @@ public class SkuGoodsController {
      */
     @ApiOperation(value = "SkuGoods分页查询",notes = "分页查询SkuGoods方法详情",tags = {"SkuGoodsController"})
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "path", name = "page", value = "当前页", required = true, dataType = "Integer"),
-            @ApiImplicitParam(paramType = "path", name = "size", value = "每页显示条数", required = true, dataType = "Integer")
+            @ApiImplicitParam(paramType = "path", name = "page", value = "当前页", defaultValue = "1",  required = true, dataType = "Integer"),
+            @ApiImplicitParam(paramType = "path", name = "size", value = "每页显示条数", defaultValue = "10",  required = true, dataType = "Integer")
     })
     @GetMapping(value = "/search/{page}/{size}" )
     public Result<PageInfo> findPage(@PathVariable  int page, @PathVariable  int size){

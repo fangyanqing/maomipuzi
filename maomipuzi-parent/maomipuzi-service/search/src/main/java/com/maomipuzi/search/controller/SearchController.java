@@ -5,6 +5,8 @@ import com.maomipuzi.search.service.SearchService;
 import entity.Page;
 import entity.Result;
 import entity.StatusCode;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import java.util.Set;
  * @author: fangyanqing
  * @create: 2020-03-25 20:17
  **/
+@Api(value = "商品搜索")
 @RestController
 @RequestMapping(value = "/search")
 @CrossOrigin
@@ -25,12 +28,14 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
+    @ApiOperation(value = "数据导入",tags = {"SearchController"})
     @GetMapping(value = "/importDate")
     public Result importData(){
         searchService.importData();
         return new Result(true, StatusCode.OK,"数据导入成功");
     }
 
+    @ApiOperation(value = "搜索查询",tags = {"SearchController"})
     @GetMapping("/list")
     public String list(@RequestParam Map<String ,String> searchMap, Model model){
         //特殊符号处理
@@ -68,6 +73,7 @@ public class SearchController {
         return "search";
     }
 
+    @ApiOperation(value = "特殊符号处理",tags = {"SearchController"})
     @GetMapping
     @ResponseBody
     public Map search(@RequestParam Map<String,String> searchMap){
