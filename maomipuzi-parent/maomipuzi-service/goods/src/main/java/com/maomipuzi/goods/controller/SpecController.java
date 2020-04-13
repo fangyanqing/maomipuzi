@@ -9,6 +9,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.temporal.ValueRange;
 import java.util.List;
 
 /**
@@ -82,7 +83,7 @@ public class SpecController {
      */
     @ApiOperation(value = "Spec根据ID删除",notes = "根据ID删除Spec方法详情",tags = {"SpecController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @DeleteMapping(value = "/{id}" )
+    @DeleteMapping(value = "/deleted/{id}" )
     public Result delete(@PathVariable Integer id){
         //调用SpecService实现根据主键删除
         specService.delete(id);
@@ -97,7 +98,7 @@ public class SpecController {
      */
     @ApiOperation(value = "Spec根据ID修改",notes = "根据ID修改Spec方法详情",tags = {"SpecController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @PutMapping(value="/{id}")
+    @PutMapping(value="/updated/{id}")
     public Result update(@RequestBody @ApiParam(name = "Spec对象",value = "传入JSON数据",required = false) Spec spec,@PathVariable Integer id){
         //设置主键值
         spec.setId(id);
@@ -112,7 +113,7 @@ public class SpecController {
      * @return
      */
     @ApiOperation(value = "Spec添加",notes = "添加Spec方法详情",tags = {"SpecController"})
-    @PostMapping
+    @PostMapping(value = "/add")
     public Result add(@RequestBody  @ApiParam(name = "Spec对象",value = "传入JSON数据",required = true) Spec spec){
         //调用SpecService实现添加Spec
         specService.add(spec);
@@ -126,7 +127,7 @@ public class SpecController {
      */
     @ApiOperation(value = "Spec根据ID查询",notes = "根据ID查询Spec方法详情",tags = {"SpecController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @GetMapping("/{id}")
+    @GetMapping("/findById/{id}")
     public Result<Spec> findById(@PathVariable Integer id){
         //调用SpecService实现根据主键查询Spec
         Spec spec = specService.findById(id);
@@ -138,7 +139,7 @@ public class SpecController {
      * @return
      */
     @ApiOperation(value = "查询所有Spec",notes = "查询所Spec有方法详情",tags = {"SpecController"})
-    @GetMapping
+    @GetMapping(value = "findAll")
     public Result<List<Spec>> findAll(){
         //调用SpecService实现查询所有Spec
         List<Spec> list = specService.findAll();

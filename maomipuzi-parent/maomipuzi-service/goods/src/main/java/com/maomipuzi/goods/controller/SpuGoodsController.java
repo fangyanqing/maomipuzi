@@ -153,7 +153,7 @@ public class SpuGoodsController {
      */
     @ApiOperation(value = "SpuGoods根据ID逻辑删除",notes = "根据ID逻辑删除SpuGoods方法详情",tags = {"SpuGoodsController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @DeleteMapping(value = "/{id}" )
+    @DeleteMapping(value = "/deleted/{id}" )
     public Result delete(@PathVariable Integer id){
         //调用SpuGoodsService实现根据主键删除
         spuGoodsService.delete(id);
@@ -194,7 +194,7 @@ public class SpuGoodsController {
      */
     @ApiOperation(value = "SpuGoods根据ID修改",notes = "根据ID修改SpuGoods方法详情",tags = {"SpuGoodsController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @PutMapping(value="/{id}")
+    @PutMapping(value="/update/{id}")
     public Result update(@RequestBody @ApiParam(name = "SpuGoods对象",value = "传入JSON数据",required = false) SpuGoods spuGoods,@PathVariable Integer id){
         //设置主键值
         spuGoods.setId(id);
@@ -223,7 +223,7 @@ public class SpuGoodsController {
      */
     @ApiOperation(value = "SpuGoods根据ID查询",notes = "根据ID查询SpuGoods方法详情",tags = {"SpuGoodsController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @GetMapping("/{id}")
+    @GetMapping("/findById{id}")
     public Result<SpuGoods> findById(@PathVariable Integer id){
         //调用SpuGoodsService实现根据主键查询SpuGoods
         SpuGoods spuGoods = spuGoodsService.findById(id);
@@ -235,7 +235,7 @@ public class SpuGoodsController {
      * @return
      */
     @ApiOperation(value = "查询所有SpuGoods",notes = "查询所SpuGoods有方法详情",tags = {"SpuGoodsController"})
-    @GetMapping("/find")
+    @GetMapping("/findAll")
     public Result<List<SpuGoods>> findAll(){
         //调用SpuGoodsService实现查询所有SpuGoods
         List<SpuGoods> list = spuGoodsService.findAll();

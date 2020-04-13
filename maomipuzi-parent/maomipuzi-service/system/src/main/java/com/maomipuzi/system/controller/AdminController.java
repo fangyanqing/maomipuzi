@@ -29,7 +29,7 @@ public class AdminController {
     private AdminService adminService;
 
     @ApiOperation(value = "查询所有Admin",notes = "查询所Admin有方法详情",tags = {"AdminController"})
-    @GetMapping("/find")
+    @GetMapping("/findAll")
     public Result findAll(){
         List<Admin> admins =  adminService.findAll();
         //响应结果封装
@@ -37,7 +37,7 @@ public class AdminController {
     }
 
     @ApiOperation(value = "Admin根据ID查询",notes = "根据ID查询Admin方法详情",tags = {"AdminController"})
-    @GetMapping(value = "/{adminId}")
+    @GetMapping(value = "/findById/{adminId}")
     public Result findById(@PathVariable(value = "adminId") Integer adminId){
         Admin admin = adminService.findById(adminId);
         return new Result(true, StatusCode.OK,"根据ID查询成功！",admin);
@@ -51,7 +51,7 @@ public class AdminController {
     }
 
     @ApiOperation(value = "Admin根据ID修改",notes = "根据ID修改Admin方法详情",tags = {"AdminController"})
-    @PutMapping(value = "/{adminId}")
+    @PutMapping(value = "/update/{adminId}")
     public Result update(@RequestBody @ApiParam(name = "Admin对象",value = "传入JSON数据",required = false) Admin admin,@PathVariable Integer adminId){
         //将id传入
         admin.setAdminId(adminId);
@@ -62,7 +62,7 @@ public class AdminController {
     }
 
     @ApiOperation(value = "Admin根据ID删除",notes = "根据ID删除Admin方法详情",tags = {"AdminController"})
-    @DeleteMapping(value = "/{adminId}")
+    @DeleteMapping(value = "/deleted/{adminId}")
     public Result delete(@PathVariable(value = "adminId")Integer adminId){
         adminService.delete(adminId);
         return new Result(true, StatusCode.OK,"删除成功！");
@@ -118,6 +118,20 @@ public class AdminController {
             return new Result(true, StatusCode.OK,"登录成功",info);
         }else{
             return new Result(false, StatusCode.ERROR,"登录失败");
+        }
+    }
+
+    /**
+     * 普通登录测试
+     */
+    @PostMapping(value = "/api/login2")
+    @ResponseBody
+    public Result login2(@RequestBody Admin admin){
+        boolean result = adminService.login2(admin);
+        if(result){
+            return new Result(true,StatusCode.OK,"登录成功");
+        }else{
+            return new Result(false,StatusCode.ERROR,"登录失败，请尝试重新输入正确的用户和密码");
         }
     }
 

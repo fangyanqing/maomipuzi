@@ -17,4 +17,10 @@ public interface AdminService extends BasicService<Admin> {
      * @return
      */
     boolean login(Admin admin);
+
+    /**
+     * 普通登录测试
+     */
+    boolean login2(Admin admin);
+
 }

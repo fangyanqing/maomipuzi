@@ -83,7 +83,7 @@ public class RoleController {
      */
     @ApiOperation(value = "Role根据ID删除",notes = "根据ID删除Role方法详情",tags = {"RoleController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @DeleteMapping(value = "/{id}" )
+    @DeleteMapping(value = "/deleted/{id}" )
     public Result delete(@PathVariable Integer id){
         //调用RoleService实现根据主键删除
         roleService.delete(id);
@@ -98,7 +98,7 @@ public class RoleController {
      */
     @ApiOperation(value = "Role根据ID修改",notes = "根据ID修改Role方法详情",tags = {"RoleController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @PutMapping(value="/{id}")
+    @PutMapping(value="/update/{id}")
     public Result update(@RequestBody @ApiParam(name = "Role对象",value = "传入JSON数据",required = false) Role role,@PathVariable Integer id){
         //设置主键值
         role.setId(id);
@@ -113,7 +113,7 @@ public class RoleController {
      * @return
      */
     @ApiOperation(value = "Role添加",notes = "添加Role方法详情",tags = {"RoleController"})
-    @PostMapping
+    @PostMapping(value="/add")
     public Result add(@RequestBody  @ApiParam(name = "Role对象",value = "传入JSON数据",required = true) Role role){
         //调用RoleService实现添加Role
         roleService.add(role);
@@ -127,7 +127,7 @@ public class RoleController {
      */
     @ApiOperation(value = "Role根据ID查询",notes = "根据ID查询Role方法详情",tags = {"RoleController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @GetMapping("/{id}")
+    @GetMapping("/findById/{id}")
     public Result<Role> findById(@PathVariable Integer id){
         //调用RoleService实现根据主键查询Role
         Role role = roleService.findById(id);
@@ -139,7 +139,7 @@ public class RoleController {
      * @return
      */
     @ApiOperation(value = "查询所有Role",notes = "查询所Role有方法详情",tags = {"RoleController"})
-    @GetMapping
+    @GetMapping(value = "/findAll")
     public Result<List<Role>> findAll(){
         //调用RoleService实现查询所有Role
         List<Role> list = roleService.findAll();

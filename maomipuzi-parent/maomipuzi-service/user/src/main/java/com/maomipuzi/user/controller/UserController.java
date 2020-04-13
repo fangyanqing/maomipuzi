@@ -82,7 +82,7 @@ public class UserController {
      */
     @ApiOperation(value = "User根据ID删除",notes = "根据ID删除User方法详情",tags = {"UserController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @DeleteMapping(value = "/{id}" )
+    @DeleteMapping(value = "/deleted/{id}" )
     public Result delete(@PathVariable Integer id){
         //调用UserService实现根据主键删除
         userService.delete(id);
@@ -97,7 +97,7 @@ public class UserController {
      */
     @ApiOperation(value = "User根据ID修改",notes = "根据ID修改User方法详情",tags = {"UserController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @PutMapping(value="/{id}")
+    @PutMapping(value="/update/{id}")
     public Result update(@RequestBody @ApiParam(name = "User对象",value = "传入JSON数据",required = false) User user,@PathVariable Integer id){
         //设置主键值
         user.setUserId(id);
@@ -112,7 +112,7 @@ public class UserController {
      * @return
      */
     @ApiOperation(value = "User添加",notes = "添加User方法详情",tags = {"UserController"})
-    @PostMapping
+    @PostMapping(value = "/add")
     public Result add(@RequestBody  @ApiParam(name = "User对象",value = "传入JSON数据",required = true) User user){
         //调用UserService实现添加User
         userService.add(user);
@@ -126,7 +126,7 @@ public class UserController {
      */
     @ApiOperation(value = "User根据ID查询",notes = "根据ID查询User方法详情",tags = {"UserController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @GetMapping("/{id}")
+    @GetMapping("/findById/{id}")
     public Result<User> findById(@PathVariable Integer id){
         //调用UserService实现根据主键查询User
         User user = userService.findById(id);
@@ -138,7 +138,7 @@ public class UserController {
      * @return
      */
     @ApiOperation(value = "查询所有User",notes = "查询所User有方法详情",tags = {"UserController"})
-    @GetMapping("/find")
+    @GetMapping("/findAll")
     public Result<List<User>> findAll(){
         //调用UserService实现查询所有User
         List<User> list = userService.findAll();

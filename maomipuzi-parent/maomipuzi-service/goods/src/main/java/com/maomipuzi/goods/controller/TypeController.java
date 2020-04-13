@@ -81,7 +81,7 @@ public class TypeController {
      */
     @ApiOperation(value = "Type根据ID删除", notes = "根据ID删除Type方法详情", tags = {"TypeController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/deleted/{id}")
     public Result delete(@PathVariable Integer id) {
         //调用TypeService实现根据主键删除
         typeService.delete(id);
@@ -96,7 +96,7 @@ public class TypeController {
      */
     @ApiOperation(value = "Type根据ID修改", notes = "根据ID修改Type方法详情", tags = {"TypeController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/update/{id}")
     public Result update(@RequestBody @ApiParam(name = "Type对象", value = "传入JSON数据", required = false) Type type, @PathVariable Integer id) {
         //设置主键值
         type.setTypeId(id);
@@ -125,7 +125,7 @@ public class TypeController {
      */
     @ApiOperation(value = "Type根据ID查询", notes = "根据ID查询Type方法详情", tags = {"TypeController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @GetMapping("/{id}")
+    @GetMapping("/findById{id}")
     public Result<Type> findById(@PathVariable Integer id) {
         //调用TypeService实现根据主键查询Type
         Type type = typeService.findById(id);
@@ -137,7 +137,7 @@ public class TypeController {
      * @return
      */
     @ApiOperation(value = "查询所有Type", notes = "查询所Type有方法详情", tags = {"TypeController"})
-    @GetMapping("/find")
+    @GetMapping("/findAll")
     public Result<List<Type>> findAll() {
         //调用TypeService实现查询所有Type
         List<Type> list = typeService.findAll();

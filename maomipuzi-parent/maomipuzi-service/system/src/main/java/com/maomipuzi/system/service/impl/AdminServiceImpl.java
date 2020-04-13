@@ -139,4 +139,18 @@ public class AdminServiceImpl implements AdminService {
             return BCrypt.checkpw(admin.getPassword(),adminResult.getPassword());
         }
     }
+
+    @Override
+    public boolean login2(Admin admin) {
+        Admin admin1 = new Admin();
+        admin1.setAdminName(admin.getAdminName());
+        admin1.setEnable(1);
+        admin1.setPassword(admin.getPassword());
+        Admin adminResult = adminMapper.selectOne(admin1);
+        if(adminResult == null){
+            return false;
+        }else {
+         return true;
+        }
+    }
 }

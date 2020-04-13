@@ -82,7 +82,7 @@ public class StockController {
      */
     @ApiOperation(value = "Stock根据ID删除",notes = "根据ID删除Stock方法详情",tags = {"StockController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @DeleteMapping(value = "/{id}" )
+    @DeleteMapping(value = "/deleted/{id}" )
     public Result delete(@PathVariable Integer id){
         //调用StockService实现根据主键删除
         stockService.delete(id);
@@ -97,7 +97,7 @@ public class StockController {
      */
     @ApiOperation(value = "Stock根据ID修改",notes = "根据ID修改Stock方法详情",tags = {"StockController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @PutMapping(value="/{id}")
+    @PutMapping(value="/update/{id}")
     public Result update(@RequestBody @ApiParam(name = "Stock对象",value = "传入JSON数据",required = false) Stock stock,@PathVariable Integer id){
         //设置主键值
         stock.setStockId(id);
@@ -126,7 +126,7 @@ public class StockController {
      */
     @ApiOperation(value = "Stock根据ID查询",notes = "根据ID查询Stock方法详情",tags = {"StockController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @GetMapping("/{id}")
+    @GetMapping("/findById{id}")
     public Result<Stock> findById(@PathVariable Integer id){
         //调用StockService实现根据主键查询Stock
         Stock stock = stockService.findById(id);
@@ -138,7 +138,7 @@ public class StockController {
      * @return
      */
     @ApiOperation(value = "查询所有Stock",notes = "查询所Stock有方法详情",tags = {"StockController"})
-    @GetMapping("/find")
+    @GetMapping("/findAll")
     public Result<List<Stock>> findAll(){
         //调用StockService实现查询所有Stock
         List<Stock> list = stockService.findAll();
