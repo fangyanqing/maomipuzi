@@ -1,7 +1,9 @@
 package com.maomipuzi.goods.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 import pojo.Base;
 
 import javax.persistence.*;
@@ -52,10 +54,14 @@ public class SkuGoods extends Base implements Serializable {
     @Column(name = "sex")
     private String sex;//性别
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "出生日期", required = false)
     @Column(name = "birthday")
     private Date birthday;//出生日期
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "上架日期", required = false)
     @Column(name = "shelves_time")
     private Date shelvesTime;//上架日期

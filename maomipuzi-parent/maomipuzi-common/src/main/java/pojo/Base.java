@@ -1,6 +1,8 @@
 package pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import java.util.Date;
@@ -11,6 +13,8 @@ import java.util.Date;
  **/
 
 public class Base {
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "创建时间",required = false)
     @Column(name = "create_time")
     private Date createTime;
@@ -19,6 +23,8 @@ public class Base {
     @Column(name = "creator")
     private String creator;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "更新时间",required = false)
     @Column(name = "update_time")
     private Date updateTime;
