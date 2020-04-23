@@ -17,6 +17,7 @@
         <module>order-api</module>
         <module>logistics-api</module>
         <module>shoppingCart-api</module>
+        <module>payment-api</module>
     </modules>
     <artifactId>maomipuzi-service-api</artifactId>
     <description>
