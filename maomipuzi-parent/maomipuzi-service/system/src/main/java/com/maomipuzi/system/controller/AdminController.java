@@ -114,7 +114,13 @@ public class AdminController {
                 dataRow.createCell(i++).setCellValue("其他");
             }
             // 状态
-            dataRow.createCell(i++).setCellValue(admin.getEnable());
+            if (admin.getEnable() == null){
+                dataRow.createCell(i++).setCellValue("");
+            }else if(admin.getEnable() == 0){
+                dataRow.createCell(i++).setCellValue("禁用");
+            }else if (admin.getEnable() == 1){
+                dataRow.createCell(i++).setCellValue("启用");
+            }
             // 最后修改密码时间
             if (admin.getLastPasswordResetTime() == null){
                 dataRow.createCell(i++).setCellValue("");
