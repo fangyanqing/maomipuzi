@@ -7,9 +7,20 @@ import com.maomipuzi.system.util.JwtUtil;
 import entity.Result;
 import entity.StatusCode;
 import io.swagger.annotations.*;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import util.DateTimeUtil;
+import util.ExcelUtil;
+import util.ReportExcelUtil;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +38,107 @@ import java.util.UUID;
 public class AdminController {
     @Autowired
     private AdminService adminService;
+
+    private static Logger logger = LoggerFactory.getLogger(AdminController.class);
+
+    @ApiOperation(value = "导出", httpMethod = "GET")
+    @RequestMapping(value = "/export",method = RequestMethod.GET)
+    @ResponseBody
+    public void export(HttpServletResponse response) {
+        List<Admin> admins =  adminService.findAll();
+        Workbook workbook = null;
+        String name = "管理员表";
+        try {
+            //创建 excel表格
+            workbook = new HSSFWorkbook();
+            Sheet sheet = workbook.createSheet(name);
+            reportForm(admins,sheet);
+            ReportExcelUtil.reportFormExcel(response,workbook,name);
+        } catch (Exception e){
+            logger.error("导出管理员表单失败",e);
+            e.printStackTrace();
+        }
+    }
+    private void reportForm(List<Admin> list, Sheet sheet) {
+        //表头
+        Row headRow = sheet.createRow(0);
+        int i = 0;
+        headRow.createCell(i++).setCellValue("管理员ID");
+        headRow.createCell(i++).setCellValue("管理员姓名");
+        headRow.createCell(i++).setCellValue("性别");
+        headRow.createCell(i++).setCellValue("电话");
+        headRow.createCell(i++).setCellValue("邮箱");
+        headRow.createCell(i++).setCellValue("身份证");
+        headRow.createCell(i++).setCellValue("住址");
+        headRow.createCell(i++).setCellValue("角色类型");
+        headRow.createCell(i++).setCellValue("状态");
+        headRow.createCell(i++).setCellValue("最后修改密码时间");
+        headRow.createCell(i++).setCellValue("创建时间");
+        headRow.createCell(i++).setCellValue("创建人");
+        headRow.createCell(i++).setCellValue("更新时间");
+        headRow.createCell(i++).setCellValue("更新人");
+
+        for (Admin admin : list) {
+            i = 0;
+            Row dataRow = sheet.createRow(sheet.getLastRowNum() + 1);
+            // 管理员ID
+            dataRow.createCell(i++).setCellValue(admin.getAdminId());
+            // 管理员姓名
+            dataRow.createCell(i++).setCellValue(admin.getAdminName());
+            // 性别
+            if(admin.getGender() == null){
+                dataRow.createCell(i++).setCellValue("");
+            }else if (admin.getGender() == 1){
+                dataRow.createCell(i++).setCellValue("男");
+            }else {
+                dataRow.createCell(i++).setCellValue("女");
+            }
+            // 电话
+            dataRow.createCell(i++).setCellValue(admin.getPhone());
+            // 邮箱
+            dataRow.createCell(i++).setCellValue(admin.getEmail());
+            // 身份证
+            dataRow.createCell(i++).setCellValue(admin.getIdentification());
+            // 住址
+            dataRow.createCell(i++).setCellValue(admin.getAddress());
+            // 角色类型
+            if (admin.getRoleType() == null){
+                dataRow.createCell(i++).setCellValue("");
+            }else if(admin.getRoleType() == 0){
+                dataRow.createCell(i++).setCellValue("超级管理员");
+            }else if (admin.getRoleType() == 1){
+                dataRow.createCell(i++).setCellValue("管理员");
+            }else if(admin.getRoleType() == 2){
+                dataRow.createCell(i++).setCellValue("审核员");
+            }else{
+                dataRow.createCell(i++).setCellValue("其他");
+            }
+            // 状态
+            dataRow.createCell(i++).setCellValue(admin.getEnable());
+            // 最后修改密码时间
+            if (admin.getLastPasswordResetTime() == null){
+                dataRow.createCell(i++).setCellValue("");
+            }else {
+                dataRow.createCell(i++).setCellValue(admin.getLastPasswordResetTime());
+            }
+            // 创建时间
+            if (admin.getCreateTime() == null){
+                dataRow.createCell(i++).setCellValue("");
+            }else {
+                dataRow.createCell(i++).setCellValue(DateTimeUtil.formatDate(admin.getCreateTime()));
+            }
+            // 创建人
+            dataRow.createCell(i++).setCellValue(admin.getCreator());
+            // 更新时间
+            if (admin.getUpdateTime() == null){
+                dataRow.createCell(i++).setCellValue("");
+            }else {
+                dataRow.createCell(i++).setCellValue(DateTimeUtil.formatDate(admin.getUpdateTime()));
+            }
+            // 更新人
+            dataRow.createCell(i++).setCellValue(admin.getUpdatePerson());
+        }
+    }
 
     @ApiOperation(value = "查询所有Admin",notes = "查询所Admin有方法详情",tags = {"AdminController"})
     @GetMapping("/findAll")
