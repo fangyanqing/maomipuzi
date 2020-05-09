@@ -99,7 +99,7 @@ public class CartInfoController {
     @PutMapping(value="/update/{id}")
     public Result update(@RequestBody @ApiParam(name = "CarInfo对象",value = "传入JSON数据",required = false) CartInfo cartInfo,@PathVariable Integer id){
         //设置主键值
-        cartInfo.setCarInfoId(id);
+        cartInfo.setCartInfoId(id);
         //调用CarInfoService实现修改CarInfo
         cartInfoService.update(cartInfo);
         return new Result(true,StatusCode.OK,"修改成功");

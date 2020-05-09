@@ -18,8 +18,8 @@ public class Cart implements Serializable {
     @ApiModelProperty(value = "购物车ID",required = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "car_id")
-    private Integer carId;//购物车ID
+    @Column(name = "cart_id")
+    private Integer cartId;//购物车ID
 
     @ApiModelProperty(value = "会员ID",required = false)
     @Column(name = "user_id")
@@ -28,13 +28,13 @@ public class Cart implements Serializable {
 
 
     //get方法
-    public Integer getCarId() {
-        return carId;
+    public Integer getCartId() {
+        return cartId;
     }
 
     //set方法
-    public void setCarId(Integer carId) {
-        this.carId = carId;
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
     }
     //get方法
     public Integer getUserId() {

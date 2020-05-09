@@ -79,12 +79,12 @@ public class CartInfoServiceImpl implements CartInfoService {
         Example.Criteria criteria = example.createCriteria();
         if(cartInfo!=null){
             // 购物车详情ID
-            if(!StringUtils.isEmpty(cartInfo.getCarInfoId())){
-                criteria.andEqualTo("carInfoId",cartInfo.getCarInfoId());
+            if(!StringUtils.isEmpty(cartInfo.getCartInfoId())){
+                criteria.andEqualTo("cartInfoId",cartInfo.getCartInfoId());
             }
             // 购物车ID
-            if(!StringUtils.isEmpty(cartInfo.getCarId())){
-                criteria.andEqualTo("carId",cartInfo.getCarId());
+            if(!StringUtils.isEmpty(cartInfo.getCartId())){
+                criteria.andEqualTo("cartId",cartInfo.getCartId());
             }
             // 商品编号
             if(!StringUtils.isEmpty(cartInfo.getGoodsNo())){

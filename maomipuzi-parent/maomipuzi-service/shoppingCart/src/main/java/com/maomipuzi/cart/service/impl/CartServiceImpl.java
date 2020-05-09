@@ -78,8 +78,8 @@ public class CartServiceImpl implements CartService {
         Example.Criteria criteria = example.createCriteria();
         if(cart!=null){
             // 购物车ID
-            if(!StringUtils.isEmpty(cart.getCarId())){
-                criteria.andEqualTo("carId",cart.getCarId());
+            if(!StringUtils.isEmpty(cart.getCartId())){
+                criteria.andEqualTo("cartId",cart.getCartId());
             }
             // 会员ID
             if(!StringUtils.isEmpty(cart.getUserId())){

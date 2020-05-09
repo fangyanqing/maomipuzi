@@ -18,12 +18,12 @@ public class CartInfo implements Serializable {
     @ApiModelProperty(value = "购物车详情ID",required = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "car_info_id")
-    private Integer carInfoId;//购物车详情ID
+    @Column(name = "cart_info_id")
+    private Integer cartInfoId;//购物车详情ID
 
     @ApiModelProperty(value = "购物车ID",required = false)
-    @Column(name = "car_id")
-    private Integer carId;//购物车ID
+    @Column(name = "cart_id")
+    private Integer cartId;//购物车ID
 
     @ApiModelProperty(value = "商品编号",required = false)
     @Column(name = "goods_no")
@@ -36,22 +36,22 @@ public class CartInfo implements Serializable {
 
 
     //get方法
-    public Integer getCarInfoId() {
-        return carInfoId;
+    public Integer getCartInfoId() {
+        return cartInfoId;
     }
 
     //set方法
-    public void setCarInfoId(Integer carInfoId) {
-        this.carInfoId = carInfoId;
+    public void setCartInfoId(Integer cartInfoId) {
+        this.cartInfoId = cartInfoId;
     }
     //get方法
-    public Integer getCarId() {
-        return carId;
+    public Integer getCartId() {
+        return cartId;
     }
 
     //set方法
-    public void setCarId(Integer carId) {
-        this.carId = carId;
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
     }
     //get方法
     public String getGoodsNo() {
