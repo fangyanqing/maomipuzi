@@ -126,7 +126,7 @@ public class SkuGoodsController {
      */
     @ApiOperation(value = "SkuGoods根据ID查询",notes = "根据ID查询SkuGoods方法详情",tags = {"SkuGoodsController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @GetMapping("/findById{id}")
+    @GetMapping("/findById/{id}")
     public Result<SkuGoods> findById(@PathVariable Integer id){
         //调用SkuGoodsService实现根据主键查询SkuGoods
         SkuGoods skuGoods = skuGoodsService.findById(id);
@@ -137,7 +137,7 @@ public class SkuGoodsController {
      * 查询SkuGoods全部数据
      * @return
      */
-    @ApiOperation(value = "查询所有SkuGoods",notes = "查询所SkuGoods有方法详情",tags = {"SkuGoodsController"})
+    @ApiOperation(value = "查询所有SkuGoods",notes = "查询所有SkuGoods方法详情",tags = {"SkuGoodsController"})
     @GetMapping("/findAll")
     public Result<List<SkuGoods>> findAll(){
         //调用SkuGoodsService实现查询所有SkuGoods

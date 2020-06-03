@@ -18,6 +18,7 @@
         <module>logistics</module>
         <module>shoppingCart</module>
         <module>payment</module>
+        <module>comment</module>
     </modules>
     <artifactId>maomipuzi-service</artifactId>
     <description>

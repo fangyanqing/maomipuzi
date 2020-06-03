@@ -84,7 +84,7 @@ public class SkuGoodsServiceImpl implements SkuGoodsService {
             }
             // 商品编号
             if(!StringUtils.isEmpty(skuGoods.getGoodsNo())){
-                criteria.andEqualTo("%"+skuGoods.getGoodsNo()+"%");
+                criteria.andEqualTo("goodsNo","%"+skuGoods.getGoodsNo()+"%");
             }
             // 商品名称
             if(!StringUtils.isEmpty(skuGoods.getGoodsName())){
