@@ -80,6 +80,14 @@ public class CommentServiceImpl implements CommentService {
             if(!StringUtils.isEmpty(comment.getId())){
                 criteria.andEqualTo("id",comment.getId());
             }
+            // 会员Id
+            if(!StringUtils.isEmpty(comment.getUserId())){
+                criteria.andEqualTo("userId","%"+comment.getUserId()+"%");
+            }
+            // 商品Id
+            if(!StringUtils.isEmpty(comment.getSkuId())){
+                criteria.andEqualTo("skuId","%"+comment.getSkuId()+"%");
+            }
             // 商品编号
             if(!StringUtils.isEmpty(comment.getGoodsNo())){
                 criteria.andEqualTo("goodsNo","%"+comment.getGoodsNo()+"%");
@@ -144,5 +152,32 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> findAll() {
         return commentMapper.selectAll();
+    }
+
+    /**
+     * 构建查询对象
+     * @param comment
+     * @return
+     */
+    public Example findByExample(Comment comment){
+        Example example=new Example(Comment.class);
+        Example.Criteria criteria = example.createCriteria();
+        if(comment!=null){
+            // 商品Id
+            if(!StringUtils.isEmpty(comment.getSkuId())){
+                criteria.andEqualTo("skuId",comment.getSkuId());
+            }
+        }
+        return example;
+    }
+
+    @Override
+    public List<Comment> findBySkuId(Integer skuId) {
+        Comment comment = new Comment();
+        comment.setSkuId(skuId);
+        //构建查询条件
+        Example example = findByExample(comment);
+        //根据构建的条件查询数据
+        return commentMapper.selectByExample(example);
     }
 }

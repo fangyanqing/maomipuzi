@@ -28,6 +28,10 @@ public class Comment implements Serializable {
     @Column(name = "user_id")
     private Integer userId;
 
+    @ApiModelProperty(value = "商品ID", required = false)
+    @Column(name = "sku_id")
+    private Integer skuId;
+
     @ApiModelProperty(value = "商品编号", required = false)
     @Column(name = "goods_no")
     private String goodsNo;
@@ -92,5 +96,26 @@ public class Comment implements Serializable {
 
     public void setCommentType(String commentType) {
         this.commentType = commentType;
+    }
+
+    public Integer getSkuId() {
+        return skuId;
+    }
+
+    public void setSkuId(Integer skuId) {
+        this.skuId = skuId;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", skuId=" + skuId +
+                ", goodsNo='" + goodsNo + '\'' +
+                ", content='" + content + '\'' +
+                ", commentTime=" + commentTime +
+                ", commentType='" + commentType + '\'' +
+                '}';
     }
 }

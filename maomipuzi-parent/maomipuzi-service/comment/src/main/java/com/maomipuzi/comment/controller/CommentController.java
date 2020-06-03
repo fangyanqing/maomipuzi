@@ -133,6 +133,20 @@ public class CommentController {
     }
 
     /***
+     * 根据skuID查询数据
+     * @param skuId
+     * @return
+     */
+    @ApiOperation(value = "根据skuID查询数据",notes = "根据skuID查询数据详情",tags = {"CommentController"})
+    @ApiImplicitParam(paramType = "path", name = "skuId", value = "商品ID", required = true, dataType = "Integer")
+    @PostMapping(value = "/findBySkuId/{skuId}" )
+    public Result<List<Comment>> findBySkuId(@PathVariable Integer skuId){
+        //调用CommentService实现条件查询
+        List<Comment> list = commentService.findBySkuId(skuId);
+        return new Result<List<Comment>>(true,StatusCode.OK,"查询成功",list);
+    }
+
+    /***
      * 查询全部数据
      * @return
      */
