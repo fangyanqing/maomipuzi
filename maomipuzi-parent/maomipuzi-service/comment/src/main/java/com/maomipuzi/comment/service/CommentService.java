@@ -18,4 +18,10 @@ public interface CommentService extends BasicService<Comment> {
      * @return
      */
     List<Comment>  findBySkuId(Integer skuId);
+
+    /**
+     * 根据userId查询
+     * @return
+     */
+    List<Comment>  findByUserId(Integer userId);
 }

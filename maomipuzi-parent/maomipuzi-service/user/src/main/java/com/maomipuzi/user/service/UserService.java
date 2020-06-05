@@ -9,4 +9,6 @@ import service.BasicService;
  **/
 
 public interface UserService extends BasicService<User> {
+
+    boolean login(User user);
 }

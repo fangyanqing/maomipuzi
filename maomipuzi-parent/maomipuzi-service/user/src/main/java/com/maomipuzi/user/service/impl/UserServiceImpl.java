@@ -115,4 +115,18 @@ public class UserServiceImpl implements UserService {
         }
         return example;
     }
+
+    @Override
+    public boolean login(User user) {
+        User user1 = new User();
+        user1.setRealName(user.getRealName());
+        user1.setEnable(1);
+        user1.setPassword(user.getPassword());
+        User userResult = userMapper.selectOne(user1);
+        if(userResult == null){
+            return false;
+        }else {
+            return true;
+        }
+    }
 }

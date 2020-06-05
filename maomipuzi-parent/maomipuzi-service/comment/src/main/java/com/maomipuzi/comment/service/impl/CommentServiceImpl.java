@@ -180,4 +180,31 @@ public class CommentServiceImpl implements CommentService {
         //根据构建的条件查询数据
         return commentMapper.selectByExample(example);
     }
+
+    /**
+     * 构建查询对象
+     * @param comment
+     * @return
+     */
+    public Example findByUserId(Comment comment){
+        Example example=new Example(Comment.class);
+        Example.Criteria criteria = example.createCriteria();
+        if(comment!=null){
+            // 用户Id
+            if(!StringUtils.isEmpty(comment.getUserId())){
+                criteria.andEqualTo("userId",comment.getUserId());
+            }
+        }
+        return example;
+    }
+
+    @Override
+    public List<Comment> findByUserId(Integer userId) {
+        Comment comment = new Comment();
+        comment.setUserId(userId);
+        //构建查询条件
+        Example example = findByUserId(comment);
+        //根据构建的条件查询数据
+        return commentMapper.selectByExample(example);
+    }
 }

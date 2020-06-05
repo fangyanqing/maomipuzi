@@ -144,4 +144,18 @@ public class OrderInfoController   {
         List<OrderInfo> list = orderInfoService.findAll();
         return new Result<List<OrderInfo>>(true, StatusCode.OK,"查询成功",list) ;
     }
+
+    /***
+     * 根据userId查询数据
+     * @param userId
+     * @return
+     */
+    @ApiOperation(value = "根据userID查询数据",notes = "根据userID查询数据详情",tags = {"OrderInfoController"})
+    @ApiImplicitParam(paramType = "path", name = "userId", value = "userID", required = true, dataType = "Integer")
+    @GetMapping(value = "/findByUserId/{userId}" )
+    public Result<List<OrderInfo>> findByUserId(@PathVariable Integer userId){
+        //调用CommentService实现条件查询
+        List<OrderInfo> list = orderInfoService.findByUserId(userId);
+        return new Result<List<OrderInfo>>(true,StatusCode.OK,"查询成功",list);
+    }
 }

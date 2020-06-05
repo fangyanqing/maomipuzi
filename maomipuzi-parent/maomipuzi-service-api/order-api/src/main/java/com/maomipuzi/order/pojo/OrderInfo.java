@@ -101,6 +101,10 @@ public class OrderInfo  implements Serializable {
     @Column(name = "order_info_status")
     private Integer orderInfoStatus;//订单状态  0-正常（默认）  1-退款中
 
+    @ApiModelProperty(value = "会员Id",required = false)
+    @Column(name = "user_id")
+    private Integer userId;
+
 
 
     //get方法
@@ -293,5 +297,11 @@ public class OrderInfo  implements Serializable {
         this.orderInfoStatus = orderInfoStatus;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
 
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 }

@@ -161,6 +161,9 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             if(!StringUtils.isEmpty(orderInfo.getOrderInfoStatus())){
                 criteria.andEqualTo("orderInfoStatus",orderInfo.getOrderInfoStatus());
             }
+            if(!StringUtils.isEmpty(orderInfo.getUserId())){
+                criteria.andEqualTo("userId",orderInfo.getUserId());
+            }
         }
         return example;
     }
@@ -209,5 +212,33 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Override
     public List<OrderInfo> findAll() {
         return orderInfoMapper.selectAll();
+    }
+
+
+
+    /**
+     * OrderInfo构建查询对象
+     * @param orderInfo
+     * @return
+     */
+    public Example findByUserId(OrderInfo orderInfo){
+        Example example=new Example(OrderInfo.class);
+        Example.Criteria criteria = example.createCriteria();
+        if(orderInfo!=null){
+            if(!StringUtils.isEmpty(orderInfo.getUserId())){
+                criteria.andEqualTo("userId",orderInfo.getUserId());
+            }
+        }
+        return example;
+    }
+
+    @Override
+    public List<OrderInfo> findByUserId(Integer userId) {
+        OrderInfo orderInfo = new OrderInfo();
+        orderInfo.setUserId(userId);
+        //构建查询条件
+        Example example = findByUserId(orderInfo);
+        //根据构建的条件查询数据
+        return orderInfoMapper.selectByExample(example);
     }
 }

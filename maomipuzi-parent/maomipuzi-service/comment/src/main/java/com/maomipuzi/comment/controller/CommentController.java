@@ -147,6 +147,20 @@ public class CommentController {
     }
 
     /***
+     * 根据userId查询数据
+     * @param userId
+     * @return
+     */
+    @ApiOperation(value = "根据userID查询数据",notes = "根据userID查询数据详情",tags = {"CommentController"})
+    @ApiImplicitParam(paramType = "path", name = "userId", value = "userID", required = true, dataType = "Integer")
+    @PostMapping(value = "/findByUserId/{userId}" )
+    public Result<List<Comment>> findByUserId(@PathVariable Integer userId){
+        //调用CommentService实现条件查询
+        List<Comment> list = commentService.findByUserId(userId);
+        return new Result<List<Comment>>(true,StatusCode.OK,"查询成功",list);
+    }
+
+    /***
      * 查询全部数据
      * @return
      */

@@ -25,6 +25,23 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 登录
+     */
+    @ApiOperation(value = "登录",notes = "登录方法详情",tags = {"UserController"})
+    @PostMapping(value = "/login")
+    @ResponseBody
+    public Result login(@RequestBody User user){
+        boolean result = userService.login(user);
+        if(result){
+            return new Result(true,StatusCode.OK,"登录成功");
+        }else{
+            return new Result(false,StatusCode.ERROR,"登录失败，请尝试重新输入正确的用户和密码");
+        }
+    }
+
+
+
     /***
      * User分页条件搜索实现
      * @param user
