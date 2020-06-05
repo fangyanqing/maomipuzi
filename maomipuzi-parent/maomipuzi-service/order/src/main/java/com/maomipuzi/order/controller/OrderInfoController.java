@@ -7,9 +7,18 @@ import com.maomipuzi.order.service.OrderInfoService;
 import entity.Result;
 import entity.StatusCode;
 import io.swagger.annotations.*;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import util.DateTimeUtil;
+import util.ReportExcelUtil;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -24,6 +33,96 @@ import java.util.List;
 public class OrderInfoController   {
     @Autowired
     private OrderInfoService orderInfoService;
+
+
+    private static Logger logger = LoggerFactory.getLogger(OrderInfoController.class);
+
+    @ApiOperation(value = "导出", httpMethod = "GET")
+    @RequestMapping(value = "/export",method = RequestMethod.GET)
+    @ResponseBody
+    public void export(HttpServletResponse response) {
+        List<OrderInfo> orderInfos =  orderInfoService.findAll();
+        Workbook workbook = null;
+        String name = "订单表";
+        try {
+            //创建 excel表格
+            workbook = new HSSFWorkbook();
+            Sheet sheet = workbook.createSheet(name);
+            reportForm(orderInfos,sheet);
+            ReportExcelUtil.reportFormExcel(response,workbook,name);
+        } catch (Exception e){
+            logger.error("导出订单表单失败",e);
+            e.printStackTrace();
+        }
+    }
+    private void reportForm(List<OrderInfo> list, Sheet sheet) {
+        //表头
+        Row headRow = sheet.createRow(0);
+        int i = 0;
+        headRow.createCell(i++).setCellValue("订单ID");
+        headRow.createCell(i++).setCellValue("订单编号");
+        headRow.createCell(i++).setCellValue("商品编号");
+        headRow.createCell(i++).setCellValue("运费金额");
+        headRow.createCell(i++).setCellValue("订单商品总数");
+        headRow.createCell(i++).setCellValue("订单总价");
+        headRow.createCell(i++).setCellValue("邮费");
+        headRow.createCell(i++).setCellValue("支付状态");
+        headRow.createCell(i++).setCellValue("配送方式");
+        headRow.createCell(i++).setCellValue("发货时间");
+        headRow.createCell(i++).setCellValue("收货地址");
+        headRow.createCell(i++).setCellValue("发货状态");
+        headRow.createCell(i++).setCellValue("订单状态  0-正常（默认）  1-退款中");
+        headRow.createCell(i++).setCellValue("会员Id");
+
+        for (OrderInfo orderInfo : list) {
+            i = 0;
+            Row dataRow = sheet.createRow(sheet.getLastRowNum() + 1);
+            dataRow.createCell(i++).setCellValue(orderInfo.getId());
+            dataRow.createCell(i++).setCellValue(orderInfo.getOrderNo());
+            dataRow.createCell(i++).setCellValue(orderInfo.getGoodsNo());
+            dataRow.createCell(i++).setCellValue(orderInfo.getFreightPrice());
+            dataRow.createCell(i++).setCellValue(orderInfo.getTotalNum());
+            dataRow.createCell(i++).setCellValue(orderInfo.getTotalPrice());
+            dataRow.createCell(i++).setCellValue(orderInfo.getTotalPostage());
+            if(orderInfo.getDeliveryType() == null){
+                dataRow.createCell(i++).setCellValue("");
+            }else if (orderInfo.getDeliveryType() == 0){
+                dataRow.createCell(i++).setCellValue("快递");
+            }else {
+                dataRow.createCell(i++).setCellValue("门店自取");
+            }
+            if(orderInfo.getPayStatus() == null){
+                dataRow.createCell(i++).setCellValue("");
+            }else if (orderInfo.getPayStatus() == 0){
+                dataRow.createCell(i++).setCellValue("未付款");
+            }else if (orderInfo.getPayStatus() == 1){
+                dataRow.createCell(i++).setCellValue("已付款");
+            }else {
+                dataRow.createCell(i++).setCellValue("支付失败");
+            }
+            dataRow.createCell(i++).setCellValue(orderInfo.getDeliveryTime());
+            dataRow.createCell(i++).setCellValue(orderInfo.getAddress());
+            if (orderInfo.getDeliveryStatus() == null){
+                dataRow.createCell(i++).setCellValue("");
+            }else if(orderInfo.getDeliveryStatus() == 0){
+                dataRow.createCell(i++).setCellValue("发货");
+            }else if (orderInfo.getDeliveryStatus() == 1){
+                dataRow.createCell(i++).setCellValue("未发货");
+            }else if(orderInfo.getDeliveryStatus() == 2){
+                dataRow.createCell(i++).setCellValue("已收货");
+            }else{
+                dataRow.createCell(i++).setCellValue("未收货");
+            }
+            if (orderInfo.getOrderInfoStatus() == null){
+                dataRow.createCell(i++).setCellValue("");
+            }else if(orderInfo.getOrderInfoStatus() == 0){
+                dataRow.createCell(i++).setCellValue("正常");
+            }else if (orderInfo.getOrderInfoStatus() == 1){
+                dataRow.createCell(i++).setCellValue("退款中");
+            }
+            dataRow.createCell(i++).setCellValue(orderInfo.getUserId());
+        }
+    }
 
     /***
      * OrderInfo分页条件搜索实现

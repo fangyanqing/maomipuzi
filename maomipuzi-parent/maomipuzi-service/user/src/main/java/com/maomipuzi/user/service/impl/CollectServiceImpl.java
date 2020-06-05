@@ -2,8 +2,6 @@ package com.maomipuzi.user.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.maomipuzi.goods.pojo.SkuGoods;
-import com.maomipuzi.goods.service.SkuGoodsService;
 import com.maomipuzi.user.dao.CollectMapper;
 import com.maomipuzi.user.pojo.Collect;
 import com.maomipuzi.user.service.CollectService;
@@ -24,9 +22,6 @@ public class CollectServiceImpl implements CollectService {
 
     @Autowired
     private CollectMapper collectMapper;
-
-    @Autowired
-    private SkuGoodsService skuGoodsService;
 
     /**
      * Collect条件+分页查询

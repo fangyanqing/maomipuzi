@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -224,7 +225,12 @@ public class SkuGoodsServiceImpl implements SkuGoodsService {
      */
     @Override
     public void add(SkuGoods skuGoods){
-        skuGoodsMapper.insert(skuGoods);
+        //设置时间戳作为商品编号
+        Long dateLong = new Date().getTime();
+        String dateString = "fyq-"+dateLong.toString();
+        skuGoods.setGoodsNo(dateString);
+        skuGoods.setCreateTime(new Date());
+        skuGoodsMapper.insertSelective(skuGoods);
     }
 
     /**

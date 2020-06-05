@@ -82,7 +82,7 @@ public class CollectController {
      */
     @ApiOperation(value = "Collect根据ID删除",notes = "根据ID删除Collect方法详情",tags = {"CollectController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @DeleteMapping(value = "/{id}" )
+    @DeleteMapping(value = "/deleted/{id}" )
     public Result delete(@PathVariable Integer id){
         //调用CollectService实现根据主键删除
         collectService.delete(id);
@@ -97,7 +97,7 @@ public class CollectController {
      */
     @ApiOperation(value = "Collect根据ID修改",notes = "根据ID修改Collect方法详情",tags = {"CollectController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @PutMapping(value="/{id}")
+    @PutMapping(value="/update/{id}")
     public Result update(@RequestBody @ApiParam(name = "Collect对象",value = "传入JSON数据",required = false) Collect collect, @PathVariable Integer id){
         //设置主键值
         collect.setCollectId(id);
@@ -112,7 +112,7 @@ public class CollectController {
      * @return
      */
     @ApiOperation(value = "Collect添加",notes = "添加Collect方法详情",tags = {"CollectController"})
-    @PostMapping
+    @PostMapping(value = "/add")
     public Result add(@RequestBody  @ApiParam(name = "Collect对象",value = "传入JSON数据",required = true) Collect collect){
         //调用CollectService实现添加Collect
         collectService.add(collect);
@@ -126,7 +126,7 @@ public class CollectController {
      */
     @ApiOperation(value = "Collect根据ID查询",notes = "根据ID查询Collect方法详情",tags = {"CollectController"})
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键ID", required = true, dataType = "Integer")
-    @GetMapping("/{id}")
+    @GetMapping("/findById/{id}")
     public Result<Collect> findById(@PathVariable Integer id){
         //调用CollectService实现根据主键查询Collect
         Collect collect = collectService.findById(id);
@@ -138,7 +138,7 @@ public class CollectController {
      * @return
      */
     @ApiOperation(value = "查询所有Collect",notes = "查询所Collect有方法详情",tags = {"CollectController"})
-    @GetMapping
+    @GetMapping(value = "/findAll")
     public Result<List<Collect>> findAll(){
         //调用CollectService实现查询所有Collect
         List<Collect> list = collectService.findAll();

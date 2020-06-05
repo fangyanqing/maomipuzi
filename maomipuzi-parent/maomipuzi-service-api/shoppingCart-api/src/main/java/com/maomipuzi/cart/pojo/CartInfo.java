@@ -33,6 +33,25 @@ public class CartInfo implements Serializable {
     @Column(name = "quantity")
     private Integer quantity;//数量
 
+    @ApiModelProperty(value = "商品名称",required = false)
+    @Column(name = "goods_name")
+    private String goodsName;
+
+    @ApiModelProperty(value = "价格",required = false)
+    @Column(name = "price")
+    private String price;
+
+    @ApiModelProperty(value = "商品ID",required = false)
+    @Column(name = "id")
+    private Integer id;
+
+    @ApiModelProperty(value = "image",required = false)
+    @Column(name = "image")
+    private String image;
+
+
+
+
 
 
     //get方法
@@ -70,5 +89,37 @@ public class CartInfo implements Serializable {
     //set方法
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -35,15 +35,19 @@ public class Collect implements Serializable {
     @Column(name = "collect_time")
     private Date collectTime;//收藏时间
 
+    @ApiModelProperty(value = "商品名称", required = false)
+    @Column(name = "goods_name")
+    private String goodsName;//商品名称
 
-    @Transient
-    private String goodsName;
+    @ApiModelProperty(value = "图片", required = false)
+    @Column(name = "image")
+    private String image;//图片
 
-    @Transient
-    private String price;
 
-    @Transient
-    private String image;
+    @ApiModelProperty(value = "商品价格", required = false)
+    @Column(name = "price")
+    private String price;//商品价格
+
 
 
     //get方法
